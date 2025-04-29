@@ -36,6 +36,9 @@
                 <span>5. Corte de pelo</span>
                 <span>6. Spa</span>
                 <span>7. Entre otras</span>
+                <div class="div-btn-servicio"></div>
+                    <button class="service-btn" id="soli-services-btn">Solicitar Servicio</button>
+                </div>
             </div>
         </div>
     </div>
@@ -73,9 +76,63 @@
     </div>
     <div class="div-footer">
         <div class="div-logo-footer">
-            <img src="/img/logo.jpeg" alt="" srcset="" style="height: 15vh;margin-left: 30px;margin-top: 50px;border-radius: 80px;">
+            <div class="div-form-contactos">
+                <div class="div-titulo">
+                    <h2>Contáctanos</h2>
+                </div>
+                <div method="post" class="form-contactos" id="contacto-form">
+                    <div class="div-name-email">
+                        <div class="div-input">
+                            <input type="email" name="email" id="email" placeholder="Correo Electrónico" required>
+                        </div>
+                        <div class="div-input">
+                            <input type="text" name="name" id="name" placeholder="Nombre" required>
+                        </div>
+                    </div>
+                    <div class="div-textarea">
+                        <textarea placeholder="Escribe tu comentario..." name="comment" id="comment" required></textarea>
+                    </div>
+                    <div class="div-btn">
+                        <input type="submit" value="Enviar" id="submit-btn">
+                    </div>
+                    <span id="aviso"></span>
+                </div>
+            </div>
+            <img src="/img/logo.jpeg" alt="" srcset="" style="height: 10vh;margin-top: 50px;border-radius: 80px;">
         <span>© 2023 PedCare C.A. Todos los derechos reservados.</span>
         </div>
     </div>
+    <script>
+        document.getElementById('submit-btn').addEventListener('click', async () => {
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value;
+            const comment = document.getElementById('comment').value;
+                console.log(email, name, comment);
+            
+                const response = await fetch('/contact/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, name, comment })
+            });
+            console.log(response);
+            if (response.ok) {
+                document.getElementById('aviso').innerText = 'Comentario enviado correctamente';
+                document.getElementById('email').value = '';
+                document.getElementById('name').value = '';
+                document.getElementById('comment').value = '';
+        
+            } else {
+                document.getElementById('aviso').innerText = 'Error al enviar el cometario';
+            }
+         
+        });
+
+        document.getElementById('soli-services-btn').addEventListener('click', async () => {
+            location.href = '/payment';
+         
+        });
+    </script>
 </body>
 </html>

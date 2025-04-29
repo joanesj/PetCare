@@ -83,6 +83,14 @@
     
 }
 
+.service-btn{
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+}
+
 .div-disponibilidad{
     width: 100%;
     height: 100vh;
@@ -156,7 +164,7 @@
 }
 .div-footer{
     width: 100%;
-    height: 25vh;
+    height: 55vh;
     background-color: #164B37;
     display: flex; 
     justify-content: center;
@@ -178,6 +186,87 @@
 
 .div-footer h3{
     font-size: 20px;
+}
+.div-titulo{
+    color: white;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+}
+.div-form-contactos{
+    height: 30vh;
+    width: 80vh;
+    display: flex;
+    flex-flow: column;
+    padding: 20px;
+    align-items: center;
+    gap: 10px;
+}
+
+.div-form-contactos input{
+    width: 200px;
+    height: 30px;
+
+    border-radius: 12px;
+    outline: none;
+}
+
+.div-name-email{
+    display: flex;
+    gap: 20px;
+}
+
+.div-input{
+    width: 200px;
+    height: 40px;
+    border: 1px solid;
+    border-radius: 12px;
+    
+}
+.form-contactos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.div-input input{
+    width: 190px;
+    height: 30px;
+    padding: 5px;   
+    border: none;
+    outline: none;
+}
+.div-textarea{
+    width: 400px;
+    height: 100px;
+    border: 1px solid;
+    border-radius: 12px;
+    padding: 5px; 
+    background-color: white;
+}
+.div-textarea textarea{
+    width: 390px;
+    height: 90px;
+    padding: 5px;   
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+.div-btn{
+    width: 200px;
+    height: 50px;
+    border: 1px solid;
+    border-radius: 12px;
+}
+
+.div-btn input{
+    width: 200px;
+    height: 50px;
+    border: none;
+    outline: none;
 }
 
 @media (max-width: 1450px) {

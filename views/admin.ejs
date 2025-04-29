@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+   <div class="Contanier-body">
+        <div class="div-table">
+            <div class="div-titile" id="">
+                <h2>Contactos</h2>
+            </div>
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nonbre</th>
+                    <th>Email</th>
+                    <th>Comentario</th>
+                    <th>Ip</th>
+                    <th>Fecha</th>
+                </tr>
+                </thead>
+                 <tbody>
+                    <% if (contacts.length > 0) { %>
+                        <% contacts.forEach(function(rowContacts) { %>
+                        <tr>
+                            <td><%= rowContacts.id %></td>
+                            <td><%= rowContacts.name %></td>
+                            <td><%= rowContacts.email %></td>
+                            <td><%= rowContacts.comment %></td>
+                            <td><%= rowContacts.ip %></td>
+                            <td><%= rowContacts.date %></td>
+                        </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                        <td colspan="8">No se encontraron contactos</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+   </div>
+</body>
+</html>

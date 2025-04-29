@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <link rel="stylesheet" href="css/payment.css">
+</head>
+<body>
+   <div class="div-bienvenida">
+        <div class="div-text-bienvenida">
+            <div class="div-logo">
+                <img src="/img/logo.jpeg" alt="" srcset="" style="height: 15vh;margin-left: 30px;margin-top: 50px;border-radius: 80px;">
+            </div>
+        </div>
+    </div>
+   <div class="div-container-form">
+    <div class="payment-form-container">
+        <h2>Formulario de Pago</h2>
+        <form id="payment-form" action="" method="POST" class="payment-form">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="cardholder-name">Nombre del titular de la tarjeta:</label>
+                <input type="text" id="cardholder-name" name="cardholder-name" required>
+            </div>
+            <div class="form-group">
+                <label for="card-number">Número de tarjeta:</label>
+                <input type="text" id="card-number" name="card-number" required>
+            </div>
+            <div class="form-group">
+                <label for="expiration-month">Fecha de expiración:</label>
+                <select id="expiration-month" name="expiration-month" required>
+                    <option value="">Mes</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <select id="expiration-year" name="expiration-year" required>
+                    <option value="">Año">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cvv">Código de seguridad (CVV/CVC):</label>
+                <input type="text" id="cvv" name="cvv" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Monto a pagar:</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+            <div class="form-group">
+                <label for="currency">Moneda:</label>
+                <select id="currency" name="currency" required>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="service">Seleccione el Servicio:</label>
+                <select id="service" name="service" required>
+                    <option value="Paseo de mascotas">Paseo de mascotas - $20</option>
+                    <option value="Guardería">Guardería - $30</option>
+                    <option value="Baño">Baño - $15</option>
+                    <option value="Limado de uñas">Limado de uñas - $10</option>
+                    <option value="Corte de pelo">Corte de pelo - $25</option>
+                    <option value="Spa">Spa - $40</option>
+                </select>
+            </div>
+            <button type="submit">Realizar Pago</button>
+        </form>
+        <div id="payment-message"></div>
+
+        <a class="link-home" href="/">Volver al Inicio</a>
+    </div>
+   </div>
+   </div>
+    <script src="js/payment.js"></script>
+</body>
+</html>
