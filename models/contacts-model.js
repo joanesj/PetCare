@@ -5,11 +5,11 @@ class ContactsModel {
         this.db = db(); // Inicializa la base de datos llamando a la función
     }
 
-    createContact(name, email, comment, ip) {
+    createContact(name, email, comment, ip, pais) {
         const date = new Date().toISOString();
         return new Promise((resolve, reject) => {
-            const query = `INSERT INTO contacts (name, email, comment, ip, date) VALUES (?, ?, ?, ?, ?)`;
-            this.db.run(query, [name, email, comment, ip, date], function (err) {
+            const query = `INSERT INTO contacts (name, email, comment, ip, date, pais) VALUES (?, ?, ?, ?, ?, ?)`;
+            this.db.run(query, [name, email, comment, ip, date, pais], function (err) {
                 if (err) {
                     return reject(err);
                 }

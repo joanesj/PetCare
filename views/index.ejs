@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetCare</title>
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XSNTHXH5GJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XSNTHXH5GJ');
+</script>
+
 </head>
 <body>
     <div class="div-bienvenida">
@@ -95,6 +107,7 @@
                     <div class="div-btn">
                         <input type="submit" value="Enviar" id="submit-btn">
                     </div>
+                    <div class="g-recaptcha"  id="g-recaptcha-response" data-sitekey="6Ld0mTwrAAAAAHzHrhdMkocHJxAKNx6J1LbTvTDT"></div>
                     <span id="aviso"></span>
                 </div>
             </div>
@@ -107,16 +120,18 @@
             const email = document.getElementById('email').value;
             const name = document.getElementById('name').value;
             const comment = document.getElementById('comment').value;
-                console.log(email, name, comment);
+            const recaptcha = document.getElementById('g-recaptcha-response');
+            const token = recaptcha.value;
+                console.log(email, name, comment, token);
             
                 const response = await fetch('/contact/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email, name, comment })
+                body: JSON.stringify({ email, name, comment, token })
             });
-            console.log(response);
+            console.log(response.body);
             if (response.ok) {
                 document.getElementById('aviso').innerText = 'Comentario enviado correctamente';
                 document.getElementById('email').value = '';

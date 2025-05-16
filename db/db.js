@@ -21,7 +21,8 @@ class Database {
                 email TEXT NOT NULL,
                 comment TEXT,
                 ip TEXT,
-                date TEXT NOT NULL
+                date TEXT NOT NULL,
+                pais TEXT NOT NULL
             )`, (err) => {
                 if (err) {
                     console.error('Error creating table ' + err.message);
