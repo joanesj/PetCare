@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <link rel="stylesheet" href="/css/payments.css">
+</head>
+<body>
+  <div class="admin-container">
+    <%- include('./partials/header', { user }); %>
+
+    <nav class="admin-nav">
+      <a href="/admin/contacts">Contactos</a>
+      <a href="/admin/payments" class="active">Pagos</a>
+    </nav>
+    
+    <div class="admin-content">
+      <h2>Pagos</h2>
+      
+      <div class="filters">
+        <div class="filter-group">
+          <label for="serviceFilter">Servicio:</label>
+          <select id="serviceFilter">
+            <option value="">Todos</option>
+            <option value="Paseo de mascotas">Paseo de mascotas</option>
+            <option value="Guardería">Guardería</option>
+            <option value="Baño">Baño</option>
+            <option value="Limado de uñas">Limado de uñas</option>
+            <option value="Corte de pelo">Corte de pelo</option>
+            <option value="Spa">Spa</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="statusFilter">Estado:</label>
+          <select id="statusFilter">
+            <option value="">Todos</option>
+            <option value="approved">Aprobado</option>
+            <option value="pending">Pendiente</option>
+            <option value="rejected">Rechazado</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="dateFrom">Desde:</label>
+          <input type="date" id="dateFrom">
+          
+          <label for="dateTo">Hasta:</label>
+          <input type="date" id="dateTo">
+        </div>
+      </div>
+      
+      <table id="paymentsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Servicio</th>
+            <th>Monto</th>
+            <th>Moneda</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Usuario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (payments.length > 0) { %>
+            <% payments.forEach(function(payment) { %>
+            <tr>
+              <td><%= payment.id %></td>
+              <td><%= payment.service %></td>
+              <td><%= payment.amount %></td>
+              <td><%= payment.currency %></td>
+              <td><%= new Date(payment.date).toLocaleDateString() %></td>
+              <td class="status-<%= payment.status %>">
+                <%= payment.status === 'approved' ? 'Aprobado' : 
+                    payment.status === 'pending' ? 'Pendiente' : 'Rechazado' %>
+              </td>
+              <td><%= payment.email %></td>
+            </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="7">No se encontraron pagos</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <script>
+    function filterPayments() {
+      const service = document.getElementById('serviceFilter').value.toLowerCase();
+      const status = document.getElementById('statusFilter').value;
+      const dateFrom = document.getElementById('dateFrom').value;
+      const dateTo = document.getElementById('dateTo').value;
+      
+      const rows = document.querySelectorAll('#paymentsTable tbody tr');
+      
+      rows.forEach(row => {
+        const rowService = row.cells[1].textContent.toLowerCase();
+        const rowStatus = row.cells[5].className.replace('status-', '');
+        const rowDate = new Date(row.cells[4].textContent);
+        
+        let show = true;
+        
+        if (service && !rowService.includes(service)) {
+          show = false;
+        }
+        
+        if (status && rowStatus !== status) {
+          show = false;
+        }
+        
+        if (dateFrom && new Date(dateFrom) > rowDate) {
+          show = false;
+        }
+        
+        if (dateTo && new Date(dateTo) < rowDate) {
+          show = false;
+        }
+        
+        row.style.display = show ? '' : 'none';
+      });
+    }
+    
+    document.getElementById('serviceFilter').addEventListener('change', filterPayments);
+    document.getElementById('statusFilter').addEventListener('change', filterPayments);
+    document.getElementById('dateFrom').addEventListener('change', filterPayments);
+    document.getElementById('dateTo').addEventListener('change', filterPayments);
+  </script>
+</body>
+</html>

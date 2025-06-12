@@ -6,7 +6,11 @@
     <title>PetCare</title>
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
-
+<meta property="og:title" content="PetCare - Cuidado profesional para tus mascotas">
+<meta property="og:description" content="Servicios de paseo, guardería, baño y más para tus mascotas">
+<meta property="og:image" content="/img/logo.jpeg">
+<meta property="og:url" content="https://petcare-rics.onrender.com/">
+<meta property="og:type" content="website">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XSNTHXH5GJ"></script>
 <script>
@@ -22,7 +26,21 @@
     <div class="div-bienvenida">
         <div class="div-text-bienvenida">
             <div class="div-logo">
-                <img src="/img/logo.jpeg" alt="" srcset="" style="height: 15vh;margin-left: 30px;margin-top: 50px;border-radius: 80px;">
+                <img src="/img/logo.jpeg" alt="" srcset="" style="height: 15vh;border-radius: 80px;">
+              
+                 <% if (user) { %>
+          <div class="div-btn-login">
+                    <a href="/auth/logout" class="btn-login">
+                        <span>Cerrar Sesion</span>
+                    </a>
+                </div>
+    <% } else { %>
+         <div class="div-btn-login">
+                    <a href="/auth/login" class="btn-login">
+                        <span>Iniciar Sesion</span>
+                    </a>
+                </div>
+    <% } %>
             </div>
             <div class="div-info">
                 <div class="div-info-bienveida">

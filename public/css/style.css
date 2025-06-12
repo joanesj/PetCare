@@ -73,6 +73,30 @@
     font-size: xx-large;
 }
 
+.div-logo{
+        display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+
+}
+.div-btn-login{
+    width: 152px;
+    height: 60px;
+    border: 2px solid #164B37;
+    border-radius: 12px;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    background: #ECE5D5;
+}
+
+.btn-login {
+    text-decoration: none;
+    color: #164B37;
+}
 .div-text-servicio{
     width: 50vh;
     color: white;

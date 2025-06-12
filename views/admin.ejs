@@ -1,52 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title><%= title %></title>
     <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
-   <div class="Contanier-body">
-        <div class="div-table">
-            <div class="div-titile" id="">
-                <h2>Contactos</h2>
+   <div class="container">
+       <%- include('./partials/header', { user }); %>
+       
+        <nav class="admin-nav">
+            <a href="/admin/contacts" class="active">Contactos</a>
+            <a href="/admin/payments">Pagos</a>
+        </nav>
+        
+        <main class="admin-content">
+            <h2>Lista de Contactos</h2>
+            
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar por nombre o email...">
             </div>
             
-            <table>
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Comentario</th>
-                    <th>Ip</th>
-                    <th>pais</th>
-                    <th>Fecha</th>
-                </tr>
-                </thead>
-                 <tbody>
-                    <% if (contacts.length > 0) { %>
-                        <% contacts.forEach(function(rowContacts) { %>
+            <div class="table-container">
+                <table id="contactsTable">
+                    <thead>
                         <tr>
-                            <td><%= rowContacts.id %></td>
-                            <td><%= rowContacts.name %></td>
-                            <td><%= rowContacts.email %></td>
-                            <td><%= rowContacts.comment %></td>
-                            <td><%= rowContacts.ip %></td>
-                            <td><%= rowContacts.pais %></td>
-                            <td><%= rowContacts.date %></td>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Comentario</th>
+                            <th>IP</th>
+                            <th>País</th>
+                            <th>Fecha</th>
                         </tr>
-                        <% }) %>
-                    <% } else { %>
-                        <tr>
-                        <td colspan="8">No se encontraron contactos</td>
-                        </tr>
-                    <% } %>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <% if (contacts.length > 0) { %>
+                            <% contacts.forEach(function(contact) { %>
+                            <tr>
+                                <td><%= contact.id %></td>
+                                <td><%= contact.name %></td>
+                                <td><%= contact.email %></td>
+                                <td><%= contact.comment %></td>
+                                <td><%= contact.ip %></td>
+                                <td><%= contact.pais %></td>
+                                <td><%= contact.date %></td>
+                            </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="7" class="no-data">No se encontraron contactos</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
-        </div>
+        </main>
    </div>
+   
+   <script>
+       document.getElementById('searchInput').addEventListener('input', function() {
+           const searchTerm = this.value.toLowerCase();
+           const rows = document.querySelectorAll('#contactsTable tbody tr');
+           
+           rows.forEach(row => {
+               if (row.classList.contains('no-data')) return;
+               
+               const name = row.cells[1].textContent.toLowerCase();
+               const email = row.cells[2].textContent.toLowerCase();
+               
+               if (name.includes(searchTerm) || email.includes(searchTerm)) {
+                   row.style.display = '';
+               } else {
+                   row.style.display = 'none';
+               }
+           });
+       });
+   </script>
 </body>
 </html>

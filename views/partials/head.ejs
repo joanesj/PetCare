@@ -1,0 +1,29 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= title %> | PetCare</title>
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="<%= title %> | PetCare">
+<meta property="og:description" content="<%= description || 'El mejor cuidado para tus mascotas. Servicios de paseo, guardería, baño y más.' %>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="<%= currentUrl %>">
+<meta property="og:image" content="/img/logo.jpeg">
+<meta property="og:site_name" content="PetCare">
+
+<!-- Favicon -->
+<link rel="icon" href="/img/logo.jpeg">
+
+<!-- Styles -->
+<link rel="stylesheet" href="/css/style.css">
+<% if (css) { %>
+  <link rel="stylesheet" href="/css/<%= css %>.css">
+<% } %>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XSNTHXH5GJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XSNTHXH5GJ');
+</script>
